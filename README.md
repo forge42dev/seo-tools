@@ -1,6 +1,6 @@
 #  seo-tools
 
-SEO Tools is a collection of tools to help you with your SEO efforts. It includes tools to help you with keyword research, link building, and more.
+SEO Tools is a collection of tools to help you with your SEO efforts. It includes tools to help you with sitemaps, robots.txt, canonical links, structured data, and metadata. The package is split into smaller submodules so you can only import the parts you need, in spirit of good SEO we want your bundle as small as possible.
 
 
 ## Installation
