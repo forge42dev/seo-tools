@@ -1,4 +1,10 @@
 #  seo-tools
+![GitHub Repo stars](https://img.shields.io/github/stars/forge42dev/seo-tools?style=social)
+![npm](https://img.shields.io/npm/v/@forge42/seo-tools?style=plastic)
+![GitHub](https://img.shields.io/github/license/forge42dev/seo-tools?style=plastic)
+![npm](https://img.shields.io/npm/dy/@forge42/seo-tools?style=plastic)
+![npm](https://img.shields.io/npm/dw/@forge42/seo-tools?style=plastic)
+![GitHub top language](https://img.shields.io/github/languages/top/forge42dev/seo-tools?style=plastic)
 
 SEO Tools is a collection of tools to help you with your SEO efforts. It includes tools to help you with sitemaps, robots.txt, canonical links, structured data, and metadata. The package is split into smaller submodules so you can only import the parts you need, in spirit of good SEO we want your bundle as small as possible.
 
