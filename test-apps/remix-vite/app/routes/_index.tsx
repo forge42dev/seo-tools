@@ -1,9 +1,32 @@
 import type { MetaFunction } from "@remix-run/node";
 // Import and test your package
-import { test } from "open-source-stack";
+import { generateMeta } from "seo-tools/remix/metadata";
+import { article } from "seo-tools/structured-data/article";
+import { course } from "seo-tools/structured-data/course";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "New Remix App" }, { name: "description", content: "Welcome to Remix!" }];
+  const meta = generateMeta({
+    title: "test",
+    description: "test",
+    url: "test",
+  }, [
+    {
+      "script:ld+json": article({
+        "@type": "Article",
+        headline: "Article headline",
+        image: "https://example.com/image.jpg",
+        datePublished: "2021-01-01T00:00:00Z",
+      })
+    },
+    {
+      "script:ld+json": course({
+        "@type": "Course",
+        name: "Course name",
+        description: "Course description",
+      })
+    }
+  ])
+  return meta
 };
 
 export default function Index() {
