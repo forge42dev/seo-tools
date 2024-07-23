@@ -32,7 +32,7 @@ import { generateCanonicalLinks } from 'seo-tools/canonical';
 
 const canonicalLinks = generateCanonicalLinks({
 	// Used to generate the final url, it passes your alternatives, url and domain to the function for you to create whatever link you need
-	urlTransformer: ({ url, domain, alternative }) => `${domain}/${alternative}/${url}`,
+	urlTransformer: ({ url, domain, alternative }) => `${domain}/${url}?lng=${alternative}`,
 	// Used to generate the final attributes
 	altAttributesTransformer: ({ url, domain, alternative }) => attributes,
 	alternatives: ["de", "es"],
@@ -51,14 +51,14 @@ false
 );
 
 console.log(canonicalLinks);
-// <link rel="canonical" href="https://example.com/en/current-url">
-// <link rel="alternate" href="https://example.com/de/current-url" hreflang="de">
-// <link rel="alternate" href="https://example.com/es/current-url" hreflang="es">
+// <link rel="canonical" href="https://example.com/current-url">
+// <link rel="alternate" href="https://example.com/current-url?lng=de" hreflang="de">
+// <link rel="alternate" href="https://example.com/current-url?lng=es" hreflang="es">
 // or as an array of json objects
 // [
-// 	{ rel: 'canonical', href: 'https://example.com/en/current-url' },
-// 	{ rel: 'alternate', href: 'https://example.com/de/current-url', hreflang: 'de' },
-// 	{ rel: 'alternate', href: 'https://example.com/es/current-url', hreflang: 'es' }
+// 	{ rel: 'canonical', href: 'https://example.com/current-url' },
+// 	{ rel: 'alternate', href: 'https://example.com/current-url?lng=de', hreflang: 'de' },
+// 	{ rel: 'alternate', href: 'https://example.com/current-url?lng=es', hreflang: 'es' }
 // ]
 ```
 
