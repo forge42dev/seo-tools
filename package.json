@@ -1,32 +1,15 @@
 {
-	"name": "open-source-stack",
+	"name": "seo-tools",
 	"version": "1.0.0",
-	"description": "Minimal open-source stack to help you ship an open-source package in TS",
-	"main": "./dist/index.js",
-	"module": "./dist/index.mjs",
-	"types": "./dist/index.d.mts",
-	"exports": {
-		".": {
-			"import": {
-				"import": "./dist/index.mjs",
-				"default": "./dist/index.mjs",
-				"types": "./dist/index.d.mts"
-			},
-			"require": {
-				"import": "./dist/index.js",
-				"require": "./dist/index.js",
-				"default": "./dist/index.js",
-				"types": "./dist/index.d.ts"
-			}
-		}
-	},
+	"keywords": ["seo", "remix-seo", "seo-tools", "structured-data", "sitemap", "robots", "canonical", "seo-alternate"],
+	"description": "A set of tools to evolve your SEO strategy to the next level",
 	"scripts": {
 		"test": "vitest run",
 		"test:cov": "vitest run --coverage",
-		"build": "tsup src/index.ts  --dts --format esm,cjs --outDir dist --minify --clean",
+		"build": "tsup --config tsup.config.ts",
 		"remix:dev": "npm run dev -w test-apps/remix-vite",
 		"remix:cjs:dev": "npm run dev -w test-apps/remix-vite-cjs",
-		"build:dev": "tsup src/index.ts --dts --format cjs,esm  --outDir dist",
+		"build:dev": "tsup --config tsup.dev.config.ts",
 		"build:dev:watch": "npm run build:dev -- --watch",
 		"build:dev:cjs:watch": "npm run build:dev -- --watch",
 		"dev": "npm-run-all -s build:dev -p remix:dev build:dev:watch",
@@ -37,18 +20,18 @@
 		"typecheck": "tsc",
 		"validate": "npm run check && npm run tsc && npm run test"
 	},
-	"author": "",
-	"license": "ISC",
+	"author": "@forge42dev",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/forge42dev/open-source-stack.git"
+		"url": "git+https://github.com/forge42dev/seo-tools.git"
 	},
 	"bugs": {
-		"url": "https://github.com/forge42dev/open-source-stack/issues"
+		"url": "https://github.com/forge42dev/seo-tools/issues"
 	},
 	"files": ["dist"],
 	"workspaces": [".", "test-apps/*"],
-	"homepage": "https://github.com/forge42dev/open-source-stack#readme",
+	"homepage": "https://github.com/forge42dev/seo-tools#readme",
 	"devDependencies": {
 		"@biomejs/biome": "^1.8.3",
 		"@types/node": "^20.12.7",
@@ -56,18 +39,90 @@
 		"happy-dom": "^14.7.1",
 		"lefthook": "^1.7.2",
 		"npm-run-all": "^4.1.5",
-		"tsup": "^8.0.2",
+		"tsup": "^8.2.2",
 		"typescript": "^5.4.5",
-		"vitest": "^1.5.2"
+		"vitest": "^1.5.2",
+		"schema-dts": "^1.1.2"
 	},
 	"optionalDependencies": {
+		"@remix-run/server-runtime": ">=2",
+		"@rollup/rollup-darwin-x64-gnu": "4.18.1",
+		"@rollup/rollup-darwin-x64-musl": "4.18.1",
+		"@rollup/rollup-linux-arm64-gnu": "4.18.1",
 		"@rollup/rollup-linux-x64-gnu": "^4.18.1",
 		"@rollup/rollup-linux-x64-musl": "^4.18.1",
 		"@rollup/rollup-win32-arm64-msvc": "4.18.1",
 		"@rollup/rollup-win32-x64-msvc": "4.18.1",
-		"@rollup/rollup-win32-x64-musl": "4.18.1",
-		"@rollup/rollup-darwin-x64-gnu": "4.18.1",
-		"@rollup/rollup-darwin-x64-musl": "4.18.1",
-		"@rollup/rollup-linux-arm64-gnu": "4.18.1"
+		"@rollup/rollup-win32-x64-musl": "4.18.1"
+	},
+	"dependencies": {
+		"url-pattern": "^1.0.3"
+	},
+	"exports": {
+		"./sitemap": {
+			"import": {
+				"import": "./dist/sitemap.mjs",
+				"default": "./dist/sitemap.mjs",
+				"types": "./dist/sitemap.d.mts"
+			},
+			"require": {
+				"import": "./dist/sitemap.js",
+				"require": "./dist/sitemap.js",
+				"default": "./dist/sitemap.js",
+				"types": "./dist/sitemap.d.ts"
+			}
+		},
+		"./robots": {
+			"import": {
+				"import": "./dist/robots.mjs",
+				"default": "./dist/robots.mjs",
+				"types": "./dist/robots.d.mts"
+			},
+			"require": {
+				"import": "./dist/robots.js",
+				"require": "./dist/robots.js",
+				"default": "./dist/robots.js",
+				"types": "./dist/robots.d.ts"
+			}
+		},
+		"./canonical": {
+			"import": {
+				"import": "./dist/canonical.mjs",
+				"default": "./dist/canonical.mjs",
+				"types": "./dist/canonical.d.mts"
+			},
+			"require": {
+				"import": "./dist/canonical.js",
+				"require": "./dist/canonical.js",
+				"default": "./dist/canonical.js",
+				"types": "./dist/canonical.d.ts"
+			}
+		},
+		"./remix/*": {
+			"import": {
+				"import": "./dist/remix/*.mjs",
+				"default": "./dist/remix/*.mjs",
+				"types": "./dist/remix/*.d.mts"
+			},
+			"require": {
+				"import": "./dist/remix/*.js",
+				"require": "./dist/remix/*.js",
+				"default": "./dist/remix/*.js",
+				"types": "./dist/remix/*.d.ts"
+			}
+		},
+		"./structured-data/*": {
+			"import": {
+				"import": "./dist/structured-data/*.mjs",
+				"default": "./dist/structured-data/*.mjs",
+				"types": "./dist/structured-data/*.d.mts"
+			},
+			"require": {
+				"import": "./dist/structured-data/*.js",
+				"require": "./dist/structured-data/*.js",
+				"default": "./dist/structured-data/*.js",
+				"types": "./dist/structured-data/*.d.ts"
+			}
+		}
 	}
 }

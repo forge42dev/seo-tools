@@ -10,7 +10,7 @@ export default defineConfig({
 		coverage: {
 			all: false,
 			provider: "v8",
-			reporter: ["json-summary", "html"],
+			reporter: ["html", "json-summary", "text-summary"],
 			thresholds: {
 				statements: 80,
 				branches: 80,
