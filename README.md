@@ -361,13 +361,15 @@ If you want to generate different sitemaps based on the language you can use the
 // routes/sitemap.$lang[.]xml.ts
 import type { LoaderFunctionArgs } from "@remix-run/node"
 import { generateRemixSitemap } from "seo-tools/remix/sitemap"
-
+// Optionally import routes from the remix build to be consumed by the sitemap generator if the default one throws an error
+import { routes } from "virtual:remix/server-build";
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 	const domain = `${new URL(request.url).origin}`
 
 	const sitemap = await generateRemixSitemap({
 		// Domain to append urls to
 		domain,
+		routes,
 		// Ignores all dashboard routes
 		ignore: ["/status"],
 		// Transforms the url before adding it to the sitemap
@@ -417,16 +419,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
 	const domain = new URL(request.url).origin
 	const robotsTxt = generateRobotsTxt([
 		{
-			type: "User-agent",
-			value: "*",
-		},
-		{
-			type: isProductionDeployment ? "Allow" : "Disallow",
-			value: "/",
-		},
-		{
-			type: "Sitemap",
-			value: `${domain}/sitemap-index.xml`,
+			userAgent: "*",
+			[isProductionDeployment ? "disallow": "allow"]:["/"],
+			sitemap: [`${domain}/sitemap-index.xml`],
 		},
 	])
 

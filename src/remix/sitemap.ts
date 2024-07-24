@@ -41,18 +41,24 @@ const createExtendedRoutes = (routes: RouteManifest<ServerRoute>) => {
 const generateRemixSitemapRoutes = async ({
 	domain,
 	sitemapData,
+	routes,
 }: {
 	domain: string
 	sitemapData?: unknown
+	routes?: RouteManifest<ServerRoute>
 }) => {
-	// @ts-expect-error - This import exists but is not picked up by the typescript compiler because it's a remix internal
-	const { routes } = await import("virtual:remix/server-build").catch(() => {
-		throw new Error(
-			"Could not find the remix server build. Make sure you have Remix running on Vite and not in SPA mode. Otherwise use the generateSitemap utility."
-		)
-	})
+	let finalRoutes = routes
+	if (!finalRoutes) {
+		// @ts-expect-error - This import exists but is not picked up by the typescript compiler because it's a remix internal
+		const { routes } = await import("virtual:remix/server-build").catch(() => {
+			throw new Error(
+				"Could not find the remix server build. Make sure you have Remix running on Vite and not in SPA mode. Otherwise use the generateSitemap utility."
+			)
+		})
+		finalRoutes = routes
+	}
 	// Add the url to each route
-	const extendedRoutes = createExtendedRoutes(routes)
+	const extendedRoutes = createExtendedRoutes(finalRoutes as unknown as RouteManifest<ServerRoute>)
 
 	const transformedRoutes = await Promise.all(
 		extendedRoutes.map(async (route) => {
@@ -97,6 +103,11 @@ export interface RemixSitemapInfo {
 	 * @example (url) => url.replace(/\/$/, "")
 	 */
 	urlTransformer?: (url: string) => string
+
+	/**
+	 * The routes object from the remix server build. If not provided, the utility will try to import it.
+	 */
+	routes?: RouteManifest<ServerRoute>
 }
 
 /**
@@ -110,7 +121,7 @@ export interface RemixSitemapInfo {
  * @returns Sitemap string to be passed back to the response.
  */
 export const generateRemixSitemap = async (sitemapInfo: RemixSitemapInfo) => {
-	const { domain, sitemapData, ignore, urlTransformer } = sitemapInfo
-	const routes = await generateRemixSitemapRoutes({ domain, sitemapData })
-	return generateSitemap({ domain, routes, ignore, urlTransformer })
+	const { domain, sitemapData, ignore, urlTransformer, routes } = sitemapInfo
+	const finalRoutes = await generateRemixSitemapRoutes({ domain, sitemapData, routes })
+	return generateSitemap({ domain, routes: finalRoutes, ignore, urlTransformer })
 }

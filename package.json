@@ -1,6 +1,6 @@
 {
 	"name": "@forge42/seo-tools",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"private": false,
 	"keywords": ["seo", "remix-seo", "seo-tools", "structured-data", "sitemap", "robots", "canonical", "seo-alternate"],
 	"description": "Set of helpers designed to help you create, maintain and develop your SEO",
