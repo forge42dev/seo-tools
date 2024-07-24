@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"private": false,
 	"keywords": ["seo", "remix-seo", "seo-tools", "structured-data", "sitemap", "robots", "canonical", "seo-alternate"],
-	"description": "A set of tools to evolve your SEO strategy to the next level",
+	"description": "Set of helpers designed to help you create, maintain and develop your SEO",
 	"scripts": {
 		"test": "vitest run",
 		"test:cov": "vitest run --coverage",
