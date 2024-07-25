@@ -1,4 +1,4 @@
-#  seo-tools
+#  @forge42/seo-tools
 ![GitHub Repo stars](https://img.shields.io/github/stars/forge42dev/seo-tools?style=social)
 ![npm](https://img.shields.io/npm/v/@forge42/seo-tools?style=plastic)
 ![GitHub](https://img.shields.io/github/license/forge42dev/seo-tools?style=plastic)
@@ -14,7 +14,7 @@ SEO Tools is a collection of tools to help you with your SEO efforts. It include
 Use the package manager of your choice to install the package.
 
 ```bash
-npm install seo-tools
+npm install @forge42/seo-tools
 ```
 
 ## Usage
@@ -23,7 +23,7 @@ The package is split into smaller submodules so you can only import the parts yo
 small as possible.
 
 ```javascript
-import { generateCanonicalLinks } from 'seo-tools/canonical';
+import { generateCanonicalLinks } from '@forge42/seo-tools/canonical';
 ```
 
 This means we do not include a barrel export and you need to import the specific module you need. We do this so only the parts you need
@@ -34,7 +34,7 @@ are actually used in your bundle as mentioned above. Now we will go over each su
 The canonical link is a link that tells search engines that a certain URL represents the master copy of a page. This is useful for SEO because it helps search engines avoid duplicate content issues and tell it for alternative languages/content.
 
 ```typescript
-import { generateCanonicalLinks } from 'seo-tools/canonical';
+import { generateCanonicalLinks } from '@forge42/seo-tools/canonical';
 
 const canonicalLinks = generateCanonicalLinks({
 	// Used to generate the final url, it passes your alternatives, url and domain to the function for you to create whatever link you need
@@ -73,7 +73,7 @@ console.log(canonicalLinks);
 The robots.txt file is a file that tells search engines which pages they can and cannot index. This is useful for SEO because it helps search engines avoid indexing pages that you don't want them to index.
 
 ```typescript
-import { generateRobotsTxt } from 'seo-tools/robots';
+import { generateRobotsTxt } from '@forge42/seo-tools/robots';
 
 const robotsTxt = generateRobotsTxt([
 	{
@@ -113,7 +113,7 @@ console.log(robotsTxt);
 The sitemap.xml file is a file that tells search engines which pages they should index. This is useful for SEO because it helps search engines find all of the pages on your site.
 
 ```typescript
-import { generateSitemap } from 'seo-tools/sitemap';
+import { generateSitemap } from '@forge42/seo-tools/sitemap';
 
 const sitemap = generateSitemap(
 	{
@@ -161,7 +161,7 @@ console.log(sitemap);
 The sitemap index is a file that tells search engines where to find all of the sitemaps on your site. This is useful for SEO because it helps search engines find all of the sitemaps on your site.
 
 ```typescript
-import { generateSitemapIndex } from 'seo-tools/sitemap';
+import { generateSitemapIndex } from '@forge42/seo-tools/sitemap';
 
 const sitemapIndex = generateSitemapIndex([
 	{
@@ -198,29 +198,29 @@ To better learn about structured data you can find all the information you will 
 https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data
 
 We offer the following utilities to generate structured data:
-- breadcrumb - ``` import { breadcrumbs } from 'seo-tools/structured-data/breadcrumb'; ```
-- article - ``` import { article } from 'seo-tools/structured-data/article'; ```
-- car - ``` import { car } from 'seo-tools/structured-data/car'; ```
-- course - ``` import { course } from 'seo-tools/structured-data/course'; ```
-- dataset - ``` import { dataset } from 'seo-tools/structured-data/dataset'; ```
-- discussion-forum - ``` import { discussionForum } from 'seo-tools/structured-data/discussion-forum'; ```
-- employer-rating - ``` import { employerRating } from 'seo-tools/structured-data/employer-rating'; ```
-- event - ``` import { event } from 'seo-tools/structured-data/event'; ```
-- faq - ``` import { faq } from 'seo-tools/structured-data/faq'; ```
-- image - ``` import { image } from 'seo-tools/structured-data/image'; ```
-- item-list - ``` import { itemList } from 'seo-tools/structured-data/item-list'; ```
-- job-posting - ``` import { jobPosting } from 'seo-tools/structured-data/job-posting'; ```
-- occupation - ``` import { occupation } from 'seo-tools/structured-data/occupation'; ```
-- organization - ``` import { organization } from 'seo-tools/structured-data/organization'; ```
-- product - ``` import { product } from 'seo-tools/structured-data/product'; ```
-- profile - ``` import { profile } from 'seo-tools/structured-data/profile'; ```
-- qa - ``` import { qa } from 'seo-tools/structured-data/qa'; ```
-- recipe - ``` import { recipe } from 'seo-tools/structured-data/recipe'; ```
-- software-app - ``` import { softwareApp } from 'seo-tools/structured-data/software-app'; ```
-- video - ``` import { video } from 'seo-tools/structured-data/video'; ```
+- breadcrumb - ``` import { breadcrumbs } from '@forge42/seo-tools/structured-data/breadcrumb'; ```
+- article - ``` import { article } from '@forge42/seo-tools/structured-data/article'; ```
+- car - ``` import { car } from '@forge42/seo-tools/structured-data/car'; ```
+- course - ``` import { course } from '@forge42/seo-tools/structured-data/course'; ```
+- dataset - ``` import { dataset } from '@forge42/seo-tools/structured-data/dataset'; ```
+- discussion-forum - ``` import { discussionForum } from '@forge42/seo-tools/structured-data/discussion-forum'; ```
+- employer-rating - ``` import { employerRating } from '@forge42/seo-tools/structured-data/employer-rating'; ```
+- event - ``` import { event } from '@forge42/seo-tools/structured-data/event'; ```
+- faq - ``` import { faq } from '@forge42/seo-tools/structured-data/faq'; ```
+- image - ``` import { image } from '@forge42/seo-tools/structured-data/image'; ```
+- item-list - ``` import { itemList } from '@forge42/seo-tools/structured-data/item-list'; ```
+- job-posting - ``` import { jobPosting } from '@forge42/seo-tools/structured-data/job-posting'; ```
+- occupation - ``` import { occupation } from '@forge42/seo-tools/structured-data/occupation'; ```
+- organization - ``` import { organization } from '@forge42/seo-tools/structured-data/organization'; ```
+- product - ``` import { product } from '@forge42/seo-tools/structured-data/product'; ```
+- profile - ``` import { profile } from '@forge42/seo-tools/structured-data/profile'; ```
+- qa - ``` import { qa } from '@forge42/seo-tools/structured-data/qa'; ```
+- recipe - ``` import { recipe } from '@forge42/seo-tools/structured-data/recipe'; ```
+- software-app - ``` import { softwareApp } from '@forge42/seo-tools/structured-data/software-app'; ```
+- video - ``` import { video } from '@forge42/seo-tools/structured-data/video'; ```
 
 ```typescript
-import { article } from 'seo-tools/structured-data/article';
+import { article } from '@forge42/seo-tools/structured-data/article';
 
 const structuredData = article({
 	"@type": "Article",
@@ -250,9 +250,9 @@ Meta data is a way to provide search engines with information about the content 
 We have a lightweight utility that helps you avoid writing the same tags multiple times for different platforms. It will generate the twitter & og title and description tags for you. You can also add structured data to the meta tags like in the example below.
 
 ```typescript
-import { generateMeta } from "seo-tools/remix/metadata";
-import { article } from "seo-tools/structured-data/article";
-import { course } from "seo-tools/structured-data/course";
+import { generateMeta } from "@forge42/seo-tools/remix/metadata";
+import { article } from "@forge42/seo-tools/structured-data/article";
+import { course } from "@forge42/seo-tools/structured-data/course";
 
 export const meta: MetaFunction = () => {
 	// This utility will under the hood generate the twitter & og title and description tags for you.
@@ -289,7 +289,7 @@ Refer to the sitemap utility above for more information.
 
 ```typescript
 // routes/sitemap[.]xml.ts
-import { generateRemixSitemap } from "seo-tools/remix/sitemap"
+import { generateRemixSitemap } from "@forge42/seo-tools/remix/sitemap"
 
 export const loader = async() => {
 	const sitemap = await generateRemixSitemap({
@@ -311,7 +311,7 @@ If you want to generate different entries in the sitemap by creating dynamic rou
 ```typescript
 // routes/sitemap[.]xml.ts
 
-import { generateRemixSitemap } from "seo-tools/remix/sitemap"
+import { generateRemixSitemap } from "@forge42/seo-tools/remix/sitemap"
 
 export type SitemapData = {
 	lang: Language
@@ -332,7 +332,7 @@ export const loader = async ({ request }) => {
 	})
 }
 // routes/index.tsx
-import type { SitemapHandle } from "seo-tools/remix/sitemap";
+import type { SitemapHandle } from "@forge42/seo-tools/remix/sitemap";
 import type { SitemapData } from "~/routes/sitemap[.]xml";
 // This utility trumps the default url generation so it's important to at least return the current route from here.
 export const handle: SitemapHandle<SitemapData> = {
@@ -360,7 +360,7 @@ If you want to generate different sitemaps based on the language you can use the
 ```typescript
 // routes/sitemap.$lang[.]xml.ts
 import type { LoaderFunctionArgs } from "@remix-run/node"
-import { generateRemixSitemap } from "seo-tools/remix/sitemap"
+import { generateRemixSitemap } from "@forge42/seo-tools/remix/sitemap"
 // Optionally import routes from the remix build to be consumed by the sitemap generator if the default one throws an error
 import { routes } from "virtual:remix/server-build";
 export const loader = async ({ request, params }: LoaderFunctionArgs) => {
@@ -389,7 +389,7 @@ export const loader = async ({ request, params }: LoaderFunctionArgs) => {
 
 // routes/sitemap-index[.]xml.ts
 import type { LoaderFunctionArgs } from "@remix-run/node"
-import { generateSitemapIndex } from "seo-tools/sitemap"
+import { generateSitemapIndex } from "@forge42/seo-tools/sitemap"
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
 	const domain = new URL(request.url).origin
@@ -412,7 +412,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 }
 // routes/robots[.]txt.ts
 import type { LoaderFunctionArgs } from "@remix-run/node"
-import { generateRobotsTxt } from "seo-tools/robots"
+import { generateRobotsTxt } from "@forge42/seo-tools/robots"
 
 export async function loader({ request }: LoaderFunctionArgs) {
 	const isProductionDeployment = process.env.DEPLOYMENT_ENV === "production"
