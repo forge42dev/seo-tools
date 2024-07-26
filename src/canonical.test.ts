@@ -76,6 +76,50 @@ describe("generateCanonicalLinks", () => {
 		])
 	})
 
+	it("should work when altenratives are an object array", () => {
+		const canonicalLinks = generateCanonicalLinks({
+			url: "/page",
+			domain: "https://example.com",
+			alternatives: [{ lang: "en" }, { lang: "es" }],
+			urlTransformer: ({ url, alternative, domain }) => `${domain}/${alternative.lang}${url}`,
+		})
+		expect(canonicalLinks).toEqual([
+			{
+				tagName: "link",
+				rel: "canonical",
+				href: "https://example.com/page",
+			},
+			{
+				tagName: "link",
+				rel: "alternate",
+				href: "https://example.com/en/page",
+			},
+			{
+				tagName: "link",
+				rel: "alternate",
+				href: "https://example.com/es/page",
+			},
+		])
+	})
+
+	it("should allow you to remove duplicate urls by returning null if they match with the canonical url", () => {
+		const canonicalLinks = generateCanonicalLinks({
+			url: "/page",
+			domain: "https://example.com",
+			alternatives: ["en", "es"],
+			urlTransformer: ({ url, alternative, domain, canonicalUrl }) => {
+				return `${domain}${url}` === canonicalUrl ? null : `${domain}/${alternative}${url}`
+			},
+		})
+		expect(canonicalLinks).toEqual([
+			{
+				tagName: "link",
+				rel: "canonical",
+				href: "https://example.com/page",
+			},
+		])
+	})
+
 	it("should return links properly as an array of objects with alternative attributes", () => {
 		const canonicalLinks = generateCanonicalLinks({
 			url: "/page",

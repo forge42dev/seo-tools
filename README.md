@@ -33,14 +33,17 @@ are actually used in your bundle as mentioned above. Now we will go over each su
 
 The canonical link is a link that tells search engines that a certain URL represents the master copy of a page. This is useful for SEO because it helps search engines avoid duplicate content issues and tell it for alternative languages/content.
 
+The transformer function will return the canonical url and the current alternative, the alternative can be a string, object or anything else that you can pass to the transformer.
+
 ```typescript
 import { generateCanonicalLinks } from '@forge42/seo-tools/canonical';
 
 const canonicalLinks = generateCanonicalLinks({
 	// Used to generate the final url, it passes your alternatives, url and domain to the function for you to create whatever link you need
-	urlTransformer: ({ url, domain, alternative }) => `${domain}/${url}?lng=${alternative}`,
+	urlTransformer: ({ url, domain, alternative, canonicalUrl }) => `${domain}/${url}?lng=${alternative}`,
 	// Used to generate the final attributes
-	altAttributesTransformer: ({ url, domain, alternative }) => attributes,
+	altAttributesTransformer: ({ url, domain, alternative, canonicalUrl }) => attributes,
+	// This takes a generic type and returns it in your transformers
 	alternatives: ["de", "es"],
 	domain: "https://example.com",
 	url: "current-url",
