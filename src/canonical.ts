@@ -44,6 +44,11 @@ export interface CanonicalLinkOptions<U> {
 	 */
 	url: string
 	/**
+	 * The canonical url of the current page
+	 * @example "https://example.com/some-page"
+	 */
+	canonicalUrl?: string
+	/**
 	 * Object containing the attributes to be added to the canonical link tag
 	 * @example {rel: "canonical", href: "https://example.com/some-page"}
 	 *
@@ -79,7 +84,7 @@ export const generateCanonicalLinks = <U, T extends boolean>(
 ): T extends true ? CanonicalLink[] : string => {
 	const { urlTransformer, alternatives, domain, canonicalAttributes, url, altAttributesTransformer } = options
 	const generatedCanonicalAttributes = canonicalAttributes ? convertObjectToString(canonicalAttributes) : ""
-	const canonicalUrl = `${domain + url}`
+	const canonicalUrl = options.canonicalUrl ?? `${domain + url}`
 	if (asJson) {
 		return [
 			{

@@ -1,9 +1,9 @@
 {
 	"name": "@forge42/seo-tools",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"private": false,
 	"keywords": ["seo", "remix-seo", "seo-tools", "structured-data", "sitemap", "robots", "canonical", "seo-alternate"],
-	"description": "Set of helpers designed to help you create, maintain and develop your SEO",
+	"description": "Framework agnostic set of helpers designed to help you create, maintain and develop your SEO",
 	"scripts": {
 		"test": "vitest run",
 		"test:cov": "vitest run --coverage",
