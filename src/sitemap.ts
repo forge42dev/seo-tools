@@ -230,7 +230,7 @@ const generateSitemapEntriesFromRoutes = ({
 			const finalLocation = route.url.startsWith("/") ? route.url : `/${route.url}`
 
 			// If the route matches any ignored pattern ignore it completely
-			if (ignore.some((pattern) => new UrlPattern(pattern).match(finalLocation) !== null) || route.url === "*") {
+			if (ignore.some((pattern) => new UrlPattern(pattern).match(finalLocation) !== null)) {
 				return ""
 			}
 

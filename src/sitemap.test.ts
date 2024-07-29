@@ -366,6 +366,41 @@ describe("generateSitemap", () => {
 		).toEqual(expectedSitemap)
 	})
 
+	it("should ignore the url and use the sitemapEntries when it's provided for an entry even if the path is `*`", async () => {
+		const expectedSitemap = removeWhitespace(`
+			<?xml version="1.0" encoding="UTF-8"?>
+			<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-news/0.9 http://www.google.com/schemas/sitemap-news/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-video/1.1 http://www.google.com/schemas/sitemap-video/1.1/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap.xsd http://www.w3.org/TR/xhtml11/xhtml11_schema.html http://www.w3.org/2002/08/xhtml/xhtml1-strict.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:xhtml="http://www.w3.org/TR/xhtml11/xhtml11_schema.html" >
+				<url>
+					<loc>https://example.com/page2</loc>
+				</url>
+				<url>
+					<loc>another-wildcard-route</loc>
+				</url>
+			</urlset>
+					`)
+		expect(
+			removeWhitespace(
+				await generateSitemap({
+					routes: [
+						{
+							url: "*",
+
+							sitemapEntries: [
+								{
+									route: "https://example.com/page2",
+								},
+								{
+									route: "another-wildcard-route",
+								},
+							],
+						},
+					],
+					domain: "https://example.com",
+				})
+			)
+		).toEqual(expectedSitemap)
+	})
+
 	it("should ignore the url and use the sitemapEntries when it's provided for an entry and it should loop over all the entries and add all their additional properties", async () => {
 		const expectedSitemap = removeWhitespace(`
 			<?xml version="1.0" encoding="UTF-8"?>
