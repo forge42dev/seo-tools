@@ -423,7 +423,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
 	const robotsTxt = generateRobotsTxt([
 		{
 			userAgent: "*",
-			[isProductionDeployment ? "disallow": "allow"]:["/"],
+			[isProductionDeployment ? "allow": "disallow"]:["/"],
 			sitemap: [`${domain}/sitemap-index.xml`],
 		},
 	])
